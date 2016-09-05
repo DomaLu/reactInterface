@@ -4,10 +4,8 @@ import React from 'react'
 
 
 const Init = () =>
-  <div>
-    Hey
-    <h1 className='aa'>Hello World</h1>
-    <h2 className='bb'>Hello</h2>
-  </div>
+  <header>
+    <div className='navbar-brand'></div>
+  </header>
 
 export default Init
