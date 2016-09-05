@@ -1,11 +1,22 @@
 import 'babel-polyfill';
 
-import React from 'react';
+import React, { Component }from 'react';
 import ReactDOM from 'react-dom';
-import Init from "./components/Init";
-import './css/main.scss';
+import './css/styles.scss';
 
 
+class Init extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+    <div>
+      <h1>123</h1>
+    </div>
+  )}
+}
 
 
 
