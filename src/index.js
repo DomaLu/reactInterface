@@ -6,10 +6,6 @@ import './css/styles.scss';
 
 
 class Init extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
     <div>
