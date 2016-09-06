@@ -20,6 +20,7 @@ class MainInterface extends Component {
       this.deleteMessage = this.deleteMessage.bind(this)
       this.toggleAddDisplay = this.toggleAddDisplay.bind(this)
       this.addItem = this.addItem.bind(this)
+      this.reOrder = this.reOrder.bind(this)
   }
 
   deleteMessage(item) {
@@ -37,11 +38,14 @@ class MainInterface extends Component {
 
   addItem(tempItem) {
     let tempApts = this.state.myAppointments
-
     this.setState({ myAppointments : [...tempApts, tempItem] })
+  }
 
-    console.log(this.state.myAppointments)
-
+  reOrder(orderBy, orderDir) {
+    this.setState({
+      orderBy : orderBy,
+      orderDir : orderDir
+    })
   }
 
   componentDidMount() {
@@ -58,11 +62,12 @@ class MainInterface extends Component {
     let orderBy = this.state.orderBy
     let orderDir = this.state.orderDir
 
-    filteredApts = _.orderBy(filteredApts, (item) => {
-      console.log(this)
-      let specItem = item[orderBy].toLowerCase()
+    filteredApts = _.orderBy(filteredApts, (item) =>  {
+      // console.log(this)
+      // let specItem = item[orderBy].toLowerCase()
       // console.log(specItem)
-      return specItem
+      // return specItem
+      return item[orderBy].toLowerCase()
     }, orderDir)
 
     filteredApts = filteredApts.map( (item, index) => {
@@ -77,7 +82,11 @@ class MainInterface extends Component {
           bodyVisible={this.state.aptBodyVisible}
           handleToggle={ this.toggleAddDisplay }
           addApt={this.addItem}/>
-        <SearchAppointment />
+        <SearchAppointment
+          orderBy = {this.state.orderBy}
+          orderDir = {this.state.orderDir}
+          onReOrder = {this.reOrder}
+        />
         <ul className='item-list media-list'>{filteredApts}</ul>
       </div>
   )}
