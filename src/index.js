@@ -11,9 +11,11 @@ class MainInterface extends Component {
   constructor(props) {
     super(props)
       this.state = {
+        aptBodyVisible : false,
         myAppointments: []
       }
       this.deleteMessage = this.deleteMessage.bind(this)
+      this.toggleAddDisplay = this.toggleAddDisplay.bind(this)
   }
 
   deleteMessage(item) {
@@ -24,6 +26,10 @@ class MainInterface extends Component {
     })
   }
 
+  toggleAddDisplay() {
+    let tempVisibility = !this.state.aptBodyVisible
+    this.setState({aptBodyVisible : tempVisibility})
+  }
 
   componentDidMount() {
     this.serverRequest = $.get('./data.json', (result) => {
@@ -45,7 +51,7 @@ class MainInterface extends Component {
 
     return (
       <div className='interface'>
-        <AddAppointment />
+        <AddAppointment bodyVisible={this.state.aptBodyVisible} handleToggle={ this.toggleAddDisplay }/>
         <ul className='item-list media-list'>{filteredApts}</ul>
       </div>
   )}

@@ -2,37 +2,52 @@ import React, { Component } from 'react';
 
 
 class AddAppointment extends Component {
+  constructor(props) {
+    super(props)
+    this.toggleAptDisplay = this.toggleAptDisplay.bind(this)
+  }
+
+  toggleAptDisplay() {
+    this.props.handleToggle()
+  }
+
+
   render() {
+
+    let displayAptBody = {
+      display: this.props.bodyVisible ? 'block' : 'none'
+    }
+
     return (
       <div className="panel panel-primary">
-        <div className="panel-heading apt-addheading">
+        <div className="panel-heading apt-addheading" onClick={this.toggleAptDisplay}>
           <span className="glyphicon glyphicon-plus"></span>
             Add Appointment
         </div>
 
-        <div className="panel-body">
+        <div className="panel-body" style={displayAptBody}>
           <form className="add-appointment form-horizontal">
             <div className="form-group">
-              <label className="col-sm-2 control-label" for="petName">Pet Name</label>
+              <label className="col-sm-2 control-label" htmlFor="petName">Pet Name</label>
               <div className="col-sm-10">
                 <input type="text" className="form-control"
                   id="petName" ref="inputPetName" placeholder="Pet's Name" />
               </div>
             </div>
             <div className="form-group">
-              <label className="col-sm-2 control-label" for="petOwner">Pet Owner</label>
+              <label className="col-sm-2 control-label" htmlFor="petOwner">Pet Owner</label>
               <div className="col-sm-10">
                 <input type="text" className="form-control"
                   id="petOwner" ref="inputOwnerName" placeholder="Owner's Name" />
               </div>
             </div>
             <div className="form-group">
-              <label className="col-sm-2 control-label" for="aptDate">Date</label>
+              <label className="col-sm-2 control-label" htmlFor="aptDate">Date</label>
               <div className="col-sm-4">
                 <input type="date" className="form-control"
                   id="aptDate" ref="inputAptDate" />
               </div>
-              <label className="col-sm-2 control-label" for="aptTime">Time</label>
+              <label className="col-sm-2 control-label" htmlFor="aptTime">Time</label>
               <div className="col-sm-4">
                 <input type="time" className="form-control"
                   id="aptTime" ref="inputAptTime" />
@@ -40,7 +55,7 @@ class AddAppointment extends Component {
 
             </div>
             <div className="form-group">
-              <label className="col-sm-2 control-label" for="aptNotes">Apt. Notes</label>
+              <label className="col-sm-2 control-label" htmlFor="aptNotes">Apt. Notes</label>
               <div className="col-sm-10">
                 <textarea className="form-control" rows="4" cols="50"
                   id="aptNotes" ref="inputAptNotes" placeholder="Appointment Notes"></textarea>
