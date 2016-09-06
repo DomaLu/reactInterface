@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import React, { Component }from 'react'
 import ReactDOM from 'react-dom'
 import AptList from './components/AptList'
+import AddAppointment from './components/AddAppointment'
 import _ from 'lodash'
 import './css/styles.scss'
 
@@ -44,6 +45,7 @@ class MainInterface extends Component {
 
     return (
       <div className='interface'>
+        <AddAppointment />
         <ul className='item-list media-list'>{filteredApts}</ul>
       </div>
   )}
