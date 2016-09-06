@@ -16,6 +16,7 @@ class MainInterface extends Component {
       }
       this.deleteMessage = this.deleteMessage.bind(this)
       this.toggleAddDisplay = this.toggleAddDisplay.bind(this)
+      this.addItem = this.addItem.bind(this)
   }
 
   deleteMessage(item) {
@@ -29,6 +30,15 @@ class MainInterface extends Component {
   toggleAddDisplay() {
     let tempVisibility = !this.state.aptBodyVisible
     this.setState({aptBodyVisible : tempVisibility})
+  }
+
+  addItem(tempItem) {
+    let tempApts = this.state.myAppointments
+
+    this.setState({ myAppointments : [...tempApts, tempItem] })
+
+    console.log(this.state.myAppointments)
+
   }
 
   componentDidMount() {
@@ -51,13 +61,17 @@ class MainInterface extends Component {
 
     return (
       <div className='interface'>
-        <AddAppointment bodyVisible={this.state.aptBodyVisible} handleToggle={ this.toggleAddDisplay }/>
+        <AddAppointment
+          bodyVisible={this.state.aptBodyVisible}
+          handleToggle={ this.toggleAddDisplay }
+          addApt={this.addItem}/>
         <ul className='item-list media-list'>{filteredApts}</ul>
       </div>
   )}
 
   componentWillUnmount() {
     this.serverRequest.abort()
+    console.log(11)
   }
 
 }

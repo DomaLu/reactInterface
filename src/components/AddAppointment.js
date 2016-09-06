@@ -5,10 +5,23 @@ class AddAppointment extends Component {
   constructor(props) {
     super(props)
     this.toggleAptDisplay = this.toggleAptDisplay.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
   toggleAptDisplay() {
     this.props.handleToggle()
+  }
+
+  handleAdd(e) {
+    let tempItem = {
+      petName: this.refs.inputPetName.value,
+      ownerName: this.refs.inputOwnerName.value,
+      aptDate: this.refs.inputAptDate.value + ' ' + this.refs.inputAptTime.value,
+      aptNotes: this.refs.inputAptNotes.value
+    }
+
+    e.preventDefault()
+    this.props.addApt(tempItem)
   }
 
 
@@ -26,7 +39,7 @@ class AddAppointment extends Component {
         </div>
 
         <div className="panel-body" style={displayAptBody}>
-          <form className="add-appointment form-horizontal">
+          <form className="add-appointment form-horizontal" onSubmit={this.handleAdd}>
             <div className="form-group">
               <label className="col-sm-2 control-label" htmlFor="petName">Pet Name</label>
               <div className="col-sm-10">
