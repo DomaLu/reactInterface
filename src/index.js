@@ -13,6 +13,8 @@ class MainInterface extends Component {
     super(props)
       this.state = {
         aptBodyVisible : false,
+        orderBy : 'petName',
+        orderDir : 'asc',
         myAppointments: []
       }
       this.deleteMessage = this.deleteMessage.bind(this)
@@ -53,6 +55,15 @@ class MainInterface extends Component {
 
   render() {
     let filteredApts = this.state.myAppointments
+    let orderBy = this.state.orderBy
+    let orderDir = this.state.orderDir
+
+    filteredApts = _.orderBy(filteredApts, (item) => {
+      console.log(this)
+      let specItem = item[orderBy].toLowerCase()
+      // console.log(specItem)
+      return specItem
+    }, orderDir)
 
     filteredApts = filteredApts.map( (item, index) => {
       return (
@@ -73,7 +84,6 @@ class MainInterface extends Component {
 
   componentWillUnmount() {
     this.serverRequest.abort()
-    console.log(11)
   }
 
 }
