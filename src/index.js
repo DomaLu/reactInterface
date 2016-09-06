@@ -63,10 +63,6 @@ class MainInterface extends Component {
     let orderDir = this.state.orderDir
 
     filteredApts = _.orderBy(filteredApts, (item) =>  {
-      // console.log(this)
-      // let specItem = item[orderBy].toLowerCase()
-      // console.log(specItem)
-      // return specItem
       return item[orderBy].toLowerCase()
     }, orderDir)
 
